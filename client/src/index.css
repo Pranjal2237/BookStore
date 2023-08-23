@@ -1,0 +1,132 @@
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+:root{
+  --text-color:#151875;
+  --bg-color-100:#F2F0FF;
+  --bg-color-200:#F7F7F7;
+  --bg-color-300:#F5F6F8;
+  --bg-color-400:#F6F7FB;
+  --button-color:#FB4997;
+  --text-color-200:#FB4997;
+  --text-color-300:#7E81A2;
+  --text-color-400:#A9ACC6;
+  --fs-caption-title:42px;
+  --fs-subHeading:20px;
+  --fs-paragraph:16px;
+  --fs-listTitle:22px;
+  --fs-listItem:11px;
+  --fs-button-text:16px;
+  --fs-big-font:64px;
+  --fs-caption:14px
+}
+
+body{
+  margin: 0;
+  padding: 0;
+  position: relative;
+  font-family: 'Lato', sans-serif;
+  /* font-family: 'Josefin Sans', sans-serif; */
+}
+
+body #root div p{
+  font-family: 'Lato', sans-serif; 
+}
+
+body #root div h1{
+  font-family: 'Josefin Sans', sans-serif; 
+}
+
+img{
+  max-width: 100%;
+  object-fit: contain;
+}
+
+body #root div h6{
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.sliderCard-main-div{
+  max-width: 250px;
+  text-align: center;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  cursor: pointer;
+}
+
+.sliderCard-main-div:hover .sliderCard-button{
+  display:inline-block;
+}
+
+#sliderCard-product-name{
+  font-size: var(--fs-caption);
+  color: var(--text-color-200);
+  font-weight: 700;
+}
+
+.sliderCard-main-div:hover .sliderCard-product{
+  background-color: #2F1AC4;
+  color: white;
+}
+
+.sliderCard-img-div{
+  background-color: var(--bg-color-400);
+  width: 100%;
+  padding-top: 15px;
+  padding-bottom: 10px;
+  box-sizing: border-box;
+  min-height: 255px;
+  display: flex;
+  align-items: center;
+}
+
+.sliderCard-img-div img{
+  width: 70%;
+  object-fit: contain;
+  margin: auto;
+  height:250px;
+}
+
+.sliderCard-product{
+  padding: 15px;
+  font-size: var(--fs-listItem);
+  color: var(--text-color);
+  width: 100%;
+}
+
+.sliderCard-product >p{
+  margin-top: 7px;
+}
+
+main{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 0px;
+}
+
+.container{
+  max-width:75%;
+  margin: auto;
+  text-align: center;
+}
+
+.heading{
+  font-size: var(--fs-caption-title);
+  color: var(--text-color);
+  font-weight: 700;
+  margin: 30px;
+  margin-top:60px;
+}
+
+.product-flex-div{
+  display: flex;
+  justify-content: space-evenly;
+  text-align: left;
+  align-items: start;
+  margin-top: 40px;
+}
