@@ -35,21 +35,23 @@ const ProductCard = () => {
     }
   };
 
-  const handleRemoveWishlist = (product_id) => {
-    let wishlist_id;
-    state?.wishlist?.data?.products.forEach((key) => {
-      if (key.wishListProduct.product_id === product_id) {
-        wishlist_id = key._id;
-      }
-    });
-    dispatch(removeToWishList(wishlist_id));
-    setisWishListed(!isWishListed);
-  };
+  // const handleRemoveWishlist = (product_id) => {
+  //   let wishlist_id;
+  //   state?.wishlist?.data?.products.forEach((key) => {
+  //     if (key.wishListProduct.product_id === product_id) {
+  //       wishlist_id = key._id;
+  //     }
+  //   });
+  //   dispatch(removeToWishList(wishlist_id));
+  //   setisWishListed(!isWishListed);
+  // };
 
-  const handleWishList = (product_id) => {
+  const handleWishList = (product_id,product_name) => {
     dispatch(addToWishList(product_id));
     if (state?.wishlist?.error) {
       navigate("/login");
+    }else {
+      alert(`${product_name} added to your wishlist`);
     }
   };
 
@@ -57,8 +59,8 @@ const ProductCard = () => {
     dispatch(allWishList());
   }, [state.wishlist?.data?.wishList, state.wishlist?.data?.message]);
 
-  if (state?.wishlist?.data?.products?.length > 0) {
-    state?.wishlist?.data?.products.forEach((key) => {
+  if (state?.wishlist?.data?.length > 0) {
+    state?.wishlist?.data?.forEach((key) => {
       a.push(key.wishListProduct.product_id);
     });
   }
@@ -66,8 +68,6 @@ const ProductCard = () => {
   if (!state?.book?.data) {
     return <h1>Loading.........</h1>;
   }
-
-  console.log(state?.book?.data)
 
   return (
     <Box sx={{ width: "60%" }}>
@@ -144,7 +144,7 @@ const ProductCard = () => {
                 ) : (
                   <StyledButton
                     onClick={() => {
-                      handleWishList(book._id, index);
+                      handleWishList(book._id,book.bookname);
                     }}
                   >
                     <FavoriteBorderOutlinedIcon fontSize="1.2rem" />
