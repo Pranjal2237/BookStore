@@ -35,16 +35,16 @@ const ProductCard = () => {
     }
   };
 
-  // const handleRemoveWishlist = (product_id) => {
-  //   let wishlist_id;
-  //   state?.wishlist?.data?.products.forEach((key) => {
-  //     if (key.wishListProduct.product_id === product_id) {
-  //       wishlist_id = key._id;
-  //     }
-  //   });
-  //   dispatch(removeToWishList(wishlist_id));
-  //   setisWishListed(!isWishListed);
-  // };
+  const handleRemoveWishlist = (product_id) => {
+    let wishlist_id;
+    state?.wishlist?.data?.products.forEach((key) => {
+      if (key.wishListProduct.product_id === product_id) {
+        wishlist_id = key._id;
+      }
+    });
+    dispatch(removeToWishList(wishlist_id));
+    setisWishListed(!isWishListed);
+  };
 
   const handleWishList = (product_id,product_name) => {
     dispatch(addToWishList(product_id));
@@ -144,7 +144,7 @@ const ProductCard = () => {
                 ) : (
                   <StyledButton
                     onClick={() => {
-                      handleWishList(book._id,book.bookname);
+                      handleWishList(book._id,book);
                     }}
                   >
                     <FavoriteBorderOutlinedIcon fontSize="1.2rem" />

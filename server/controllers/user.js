@@ -48,3 +48,13 @@ exports.loadUser=async(req,res)=>{
         res.status(500).json({error:error.message})
     }
 }
+
+exports.addAddress=async(req,res)=>{
+    try {
+        const {address}=req.body
+        const user=await User.findByIdAndUpdate(req.user,{address})
+        res.status(201).json(user);
+    } catch (error) {
+        res.status(500).json({error:error.message})
+    }
+}

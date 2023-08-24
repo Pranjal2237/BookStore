@@ -34,6 +34,18 @@ export const loadUser=createAsyncThunk('user',async(token)=>{
     }
 })
 
+export const addAddress=createAsyncThunk('user/address',async(address)=>{
+    try {
+        const token=sessionStorage.getItem("token");
+        const response=await Axios.patch(`${process.env.REACT_APP_URL}/user/address`,{address},{
+            headers: { Authorization: `Bearer ${token}` }
+        })
+        return response.data;
+    } catch (error) {
+        console.log(error.message)
+    }
+})
+
 const userSlice=createSlice({
     name:'user',
     initialState:{
@@ -76,6 +88,16 @@ const userSlice=createSlice({
             state.data=action.payload;
         })
         .addCase(loadUser.rejected,(state,action)=>{
+            state.error=true;
+        })
+        .addCase(addAddress.pending,(state)=>{
+            state.isLoading=true;
+        })
+        .addCase(addAddress.fulfilled,(state,action)=>{
+            state.isLoading=false;
+            state.data=action.payload;
+        })
+        .addCase(addAddress.rejected,(state,action)=>{
             state.error=true;
         })
     }

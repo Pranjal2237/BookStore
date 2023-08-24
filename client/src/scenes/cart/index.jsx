@@ -6,9 +6,11 @@ import CartTable from "../../components/CartTable";
 import EmptyItem from "../../components/EmptyItem";
 import emptyCart from "../../assets/images/emptyCart.png";
 import { allCart } from "../../state/slices/cartSlice";
+import { addAddress } from "../../state/slices/userSlice";
 
 const Cart = () => {
   const [cartTotal, setCartTotal] = useState({});
+  const [address,setAddress]=useState();
   const dispatch=useDispatch();
   const state = useSelector((state) => state);
 
@@ -16,12 +18,25 @@ const Cart = () => {
     setCartTotal(info);
   };
 
+  const handleSubmit=(e)=>{
+    e.preventDefault();
+    dispatch(addAddress(address));
+  }
+
   useEffect(()=>{
     dispatch(allCart());
   },[])
 
   return (
     <Box>
+    {!state?.user?.data?.address?<Box sx={{position:"relative"}}>
+      <Box sx={{width:"100%",height:"85dvh",backgroundColor:"gray"}}></Box>
+      <Box sx={{position:"absolute",top:"40%",left:"35%",zIndex:"10",backgroundColor:"white",p:"25px",textAlign:"center",minWidth:"400px"}}>
+        <h6>Enter Your Address</h6>
+        <input type="text" placeholder="Enter Your Address" name="address" value={address} onChange={(e)=>{setAddress(e.target.value)}} style={{width:"100%",padding:"7px",marginTop:"7px",outline:"none"}} />
+        <Button sx={{width:"100%",backgroundColor:"#FB4997",mt:"15px",color:"white","&:hover":{backgroundColor:"#FB4997"}}} onClick={(e)=>{handleSubmit(e)}}>Submit</Button>
+      </Box>
+    </Box>:
     <Box className="container" sx={{display:"flex",justifyContent:"space-between",alignItems:"start",mt:"40px",mb:"40px"}}>
       {state?.cart?.data?.length > 0 ? (
         <CartTable />
@@ -62,7 +77,7 @@ const Cart = () => {
             </Button>
         </Box>
       )}
-    </Box>
+    </Box>}
     </Box>
   );
 };
