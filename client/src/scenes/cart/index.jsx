@@ -39,7 +39,10 @@ const Cart = () => {
     </Box>:
     <Box className="container" sx={{display:"flex",justifyContent:"space-between",alignItems:"start",mt:"40px",mb:"40px"}}>
       {state?.cart?.data?.length > 0 ? (
+        <Box>
+        <p>Your Address:{state?.user?.data?.address}</p>
         <CartTable />
+        </Box>
       ) : (
         <EmptyItem
           image={emptyCart}
